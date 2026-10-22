@@ -4,7 +4,9 @@
 
 A field guide by [George Plendl](https://georgeplendl.me) to 62 everyday interface calls, such as tabs or sidebar, skeleton or spinner, and undo or confirm. Every card gives you a one-line rule, the thresholds behind it, a live demo of each option, a sentence you can say in review, and sources you can cite.
 
-It's a single HTML file. Open it in a browser and start reading. There's no build step and nothing to install.
+**[Open the live guide →](https://georgeplendl.github.io/The-UX-Decision-Handbook/)**
+
+It's a single HTML file, with no build step and nothing to install.
 
 ## What's on each card
 
@@ -57,10 +59,10 @@ Some thresholds are practitioner rules of thumb rather than research findings. E
 
 ## Using it
 
-- Open `Decision Cards Field Guide.html` in any modern browser. The only external request is for the IBM Plex fonts from Google Fonts.
+- Use the [live guide](https://georgeplendl.github.io/The-UX-Decision-Handbook/), or open `index.html` locally in any modern browser. The only external request is for the IBM Plex fonts from Google Fonts.
 - Filter by category with the tabs, or scroll through all five sections.
 - Open a card to try its demo. Use the ← and → keys to move between cards and Esc to close.
-- Every card has its own link, so you can share one directly, e.g. `…/Decision Cards Field Guide.html#skeleton-spinner`.
+- Every card has its own link, so you can share one directly, e.g. [`…/The-UX-Decision-Handbook/#skeleton-spinner`](https://georgeplendl.github.io/The-UX-Decision-Handbook/#skeleton-spinner).
 
 The demos use a fictional wholesale brand, Northwind, so the examples feel like a real product.
 
@@ -83,10 +85,11 @@ The guide also tries to follow its own advice:
 ## Project structure
 
 ```
-├── Decision Cards Field Guide.html   The whole guide: markup, styles, card data, demos, previews
-├── DESIGN.md                         The visual design spec the page follows
+├── index.html    The whole guide: markup, styles, card data, demos, previews
+├── DESIGN.md     The visual design spec the page follows
 ├── README.md
-└── LICENSE
+├── LICENSE
+└── .nojekyll     Tells GitHub Pages to serve the files as-is
 ```
 
 To edit content, look for these in the page's `<script>`:
