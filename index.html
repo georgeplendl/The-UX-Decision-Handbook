@@ -50,6 +50,8 @@ button,input,select,textarea{font:inherit;color:inherit;letter-spacing:inherit}
 
 /* Category filter, drawn as a Carbon tab strip */
 .filters{margin-bottom:40px;border-bottom:1px solid var(--line);overflow-x:auto}
+#main{transition:opacity 240ms cubic-bezier(0,0,.38,.9)}
+#main.out{opacity:0;transition:opacity 110ms cubic-bezier(.2,0,1,.9)}
 .chips{display:flex}
 .chip{flex:none;border:0;background:none;border-radius:0;height:48px;padding:0 16px;font-size:14px;line-height:1.29;color:var(--muted);cursor:pointer;white-space:nowrap}
 .chip:hover{color:var(--ink);box-shadow:inset 0 -2px 0 var(--subtle)}
@@ -362,7 +364,7 @@ table.s-tbl{width:100%;border-collapse:collapse;font-variant-numeric:tabular-num
 
 <div class="wrap">
   <header class="mast">
-    <div class="eyebrow">By George Plendl · <a href="https://georgeplendl.me">georgeplendl.me</a> · <a href="https://github.com/georgeplendl">GitHub</a></div>
+    <div class="eyebrow">Created by George Plendl · <a href="https://georgeplendl.me">georgeplendl.me</a> · <a href="https://github.com/georgeplendl">GitHub</a></div>
     <h1>The UX Decision Handbook</h1>
     <p class="sub"><span class="sub-q">Tabs or sidebar? Skeleton or spinner?</span> Pick the right pattern, and know how to explain why.</p>
     <p>Open a card to try every option and see the sources.</p>
@@ -1507,7 +1509,10 @@ const preview=c=>{const f=PV[c.id];return f?`<span class="pv${f.length>2?" n3":"
 const tile=(c,i)=>`<button class="card" data-open="${i}">${preview(c)}<h3>${c.title}</h3><p>${c.q}</p></button>`;
 function renderIndex(){main.innerHTML=Object.keys(CATS).filter(k=>fCat==="all"||k===fCat).map(k=>{const list=CARDS.map((c,i)=>[c,i]).filter(([c])=>c.cat===k);
  return `<section class="cat-sec" aria-labelledby="h-${k}"><div class="section-head"><h2 id="h-${k}">${CATS[k][0]}</h2><span>${list.length} cards</span></div><p class="section-desc">${CATS[k][1]}</p><div class="grid">${list.map(([c,i])=>tile(c,i)).join("")}</div></section>`}).join("")}
-document.querySelector(".filters").addEventListener("click",e=>{const b=e.target.closest("[data-cat]");if(!b)return;fCat=b.dataset.cat;$$(catChips,"[data-cat]").forEach(x=>x.setAttribute("aria-pressed",x===b));renderIndex()});
+// Switching tabs fades the old cards out, swaps them, and fades the new ones in (instant with reduced motion)
+const calm=matchMedia("(prefers-reduced-motion: reduce)");let swapT;
+function swapIndex(){clearTimeout(swapT);if(calm.matches){renderIndex();return}main.classList.add("out");swapT=setTimeout(()=>{renderIndex();main.classList.remove("out")},110)}
+document.querySelector(".filters").addEventListener("click",e=>{const b=e.target.closest("[data-cat]");if(!b||b.dataset.cat===fCat)return;fCat=b.dataset.cat;$$(catChips,"[data-cat]").forEach(x=>x.setAttribute("aria-pressed",x===b));swapIndex()});
 main.addEventListener("click",e=>{const b=e.target.closest("[data-open]");if(b)openCard(+b.dataset.open)});
 
 /* ===== Detail sheet ===== */
