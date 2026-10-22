@@ -67,20 +67,22 @@ button,input,select,textarea{font:inherit;color:inherit;letter-spacing:inherit}
 
 /* Grid: hairline tiles whose borders collapse into one 1px line */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));padding:1px 0 0 1px}
-.card{all:unset;box-sizing:border-box;position:relative;cursor:pointer;background:var(--canvas);border:1px solid var(--line);margin:-1px 0 0 -1px;padding:16px 16px 52px;display:flex;flex-direction:column;gap:8px;min-height:160px;transition:background-color 110ms cubic-bezier(.2,0,.38,.9)}
-.card::after{content:"→";position:absolute;right:16px;bottom:14px;font-size:20px;line-height:1;color:var(--accent)}
-.card:hover{background:var(--surface-1)}
+.card{all:unset;box-sizing:border-box;position:relative;cursor:pointer;background:var(--canvas);border:1px solid var(--line);margin:-1px 0 0 -1px;padding:16px 16px 52px;display:flex;flex-direction:column;gap:8px;min-height:160px;transition:background-color 150ms cubic-bezier(.2,0,.38,.9)}
+.card::after{content:"→";position:absolute;right:16px;bottom:14px;font-size:20px;line-height:1;color:var(--accent);transition:transform 240ms cubic-bezier(.2,0,.38,.9)}
+.card:is(:hover,:focus-visible)::after{transform:translateX(4px)}
+.card:is(:hover,:focus-visible){background:var(--surface-1)}
 .card:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;z-index:1}
 .card h3{font-size:20px;line-height:1.4}
 .card p{margin:0;color:var(--muted);font-size:14px;line-height:1.43}
 
 /* Card previews: one minimal glyph per option. The first option shows; hover or focus reveals the next */
 .pv{position:relative;display:block;margin:-16px -16px 4px;aspect-ratio:2/1;overflow:hidden}
-.pv .f{position:absolute;inset:0;transition:opacity 150ms}
-.pv .f+.f{opacity:0}
+.pv .f{position:absolute;inset:0;transition:opacity 240ms cubic-bezier(.2,0,.38,.9),transform 240ms cubic-bezier(.2,0,.38,.9)}
+.pv .f+.f{opacity:0;transform:translateY(6px)}
 .pv svg{display:block;width:100%;height:100%}
 .pvl{position:absolute;left:12px;top:10px;font-size:11px;line-height:14px;letter-spacing:.32px;color:var(--muted)}
-.card:is(:hover,:focus-visible) .pv .f1{opacity:0}
+.card:is(:hover,:focus-visible) .pv .f1{opacity:0;transform:translateY(-6px)}
+.card:is(:hover,:focus-visible) .pv :is(.f2,.f3){transform:none}
 .card:is(:hover,:focus-visible) .pv .f2{opacity:1}
 .card:is(:hover,:focus-visible) .pv.n3 .f2{animation:pv-a 3.2s infinite}
 .card:is(:hover,:focus-visible) .pv.n3 .f3{animation:pv-b 3.2s infinite}
