@@ -34,6 +34,15 @@ button,input,select,textarea{font:inherit;color:inherit;letter-spacing:inherit}
 .eyebrow{font-size:14px;line-height:1.29;color:var(--muted)}
 .eyebrow a{color:var(--accent);text-decoration:none}
 .eyebrow a:hover{color:var(--link-hover);text-decoration:underline;text-underline-offset:2px}
+
+/* Footer: a light gray band (Carbon's surface-1 row) so the page stays light */
+.site-foot{background:var(--surface-1);border-top:1px solid var(--line)}
+.site-foot .wrap{padding-block:32px 48px}
+.foot-in{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px}
+.foot-in p{margin:0;max-width:72ch;text-wrap:pretty;font-size:14px;line-height:1.43;color:var(--muted)}
+.foot-in p b{color:var(--ink);font-weight:600}
+.gh{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border:1px solid var(--accent);color:var(--accent);font-size:14px;text-decoration:none;flex:none}
+.gh:hover{background:var(--accent);color:var(--on-accent)}
 .mast h1{font-size:clamp(42px,8vw,76px);font-weight:300;line-height:1.17;letter-spacing:-.5px}
 .mast p{max-width:60ch;margin:0;font-size:18px;line-height:1.5;letter-spacing:0;color:var(--muted);text-wrap:pretty}
 .mast .sub{max-width:none;font-size:clamp(20px,2.6vw,28px);line-height:1.33;color:var(--ink)}
@@ -350,7 +359,7 @@ table.s-tbl{width:100%;border-collapse:collapse;font-variant-numeric:tabular-num
 
 <div class="wrap">
   <header class="mast">
-    <div class="eyebrow">A field guide by George Plendl · <a href="https://georgeplendl.me">georgeplendl.me</a></div>
+    <div class="eyebrow">A field guide by George Plendl · <a href="https://georgeplendl.me">georgeplendl.me</a> · <a href="https://github.com/georgeplendl">GitHub</a></div>
     <h1>The UX Decision Handbook</h1>
     <p class="sub">Make interface decisions you can defend in any design review.</p>
     <p>Each of the <span data-count="cards">62</span> cards gives you a one-line rule, the thresholds behind it, a live demo of every option, a line you can say in review, and sources you can cite. Open any card to try it.</p>
@@ -361,6 +370,13 @@ table.s-tbl{width:100%;border-collapse:collapse;font-variant-numeric:tabular-num
   </div>
   <main id="main"></main>
 </div>
+
+<footer class="site-foot">
+  <div class="wrap foot-in">
+    <p><b>Free and open source.</b> The UX Decision Handbook is MIT licensed. Use it, fork it, or suggest a decision it's missing.</p>
+    <a class="gh" href="https://github.com/georgeplendl/The-UX-Decision-Handbook"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>View the project on GitHub</a>
+  </div>
+</footer>
 
 <dialog id="dlg" aria-labelledby="dlgTitle"><div class="sheet" id="sheet"></div></dialog>
 
