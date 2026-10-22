@@ -44,7 +44,7 @@ button,input,select,textarea{font:inherit;color:inherit;letter-spacing:inherit}
 .gh{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border:1px solid var(--accent);color:var(--accent);font-size:14px;text-decoration:none;flex:none}
 .gh:hover{background:var(--accent);color:var(--on-accent)}
 .mast h1{font-size:clamp(42px,8vw,76px);font-weight:300;line-height:1.17;letter-spacing:-.5px}
-.mast p{max-width:60ch;margin:0;font-size:18px;line-height:1.5;letter-spacing:0;color:var(--muted);text-wrap:pretty}
+.mast p{margin:0;font-size:18px;line-height:1.5;letter-spacing:0;color:var(--muted);text-wrap:balance}
 .mast .sub{max-width:none;font-size:clamp(20px,2.6vw,28px);line-height:1.33;color:var(--ink)}
 .stats{display:flex;flex-wrap:wrap;gap:8px 24px;font-size:14px;color:var(--muted)}
 .stats b{color:var(--ink);font-weight:600}
@@ -64,7 +64,7 @@ button,input,select,textarea{font:inherit;color:inherit;letter-spacing:inherit}
 .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .section-head h2{font-size:32px;line-height:1.25}
 .section-head span{font-size:14px;color:var(--muted)}
-.section-desc{margin:8px 0 24px;max-width:60ch;color:var(--muted)}
+.section-desc{margin:8px 0 24px;color:var(--muted);text-wrap:pretty}
 
 /* Grid: hairline tiles whose borders collapse into one 1px line */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));padding:1px 0 0 1px}
@@ -362,7 +362,7 @@ table.s-tbl{width:100%;border-collapse:collapse;font-variant-numeric:tabular-num
     <div class="eyebrow">A field guide by George Plendl · <a href="https://georgeplendl.me">georgeplendl.me</a> · <a href="https://github.com/georgeplendl">GitHub</a></div>
     <h1>The UX Decision Handbook</h1>
     <p class="sub">Make interface decisions you can defend in any design review.</p>
-    <p>Each of the <span data-count="cards">62</span> cards gives you a one-line rule, the thresholds behind it, a live demo of every option, a line you can say in review, and sources you can cite. Open any card to try it.</p>
+    <p>Each card gives you the rule, a live demo, and the research behind it. Open any card to try it.</p>
     <div class="stats"><span><b data-count="cards">62</b> cards</span><span><b data-count="cats">5</b> categories</span><span><b data-count="demos">62</b> live demos</span></div>
   </header>
   <div class="filters" role="toolbar" aria-label="Filter cards">
