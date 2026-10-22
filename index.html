@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><title>The UX Decision Handbook</title><meta name="description" content="Make interface decisions you can defend in any design review. 62 cards, each with a rule, thresholds, a live demo, and cited sources."><meta name="author" content="George Plendl"><meta property="og:type" content="website"><meta property="og:title" content="The UX Decision Handbook"><meta property="og:description" content="Make interface decisions you can defend in any design review. 62 cards, each with a rule, thresholds, a live demo, and cited sources."><meta property="og:url" content="https://georgeplendl.github.io/The-UX-Decision-Handbook/"><meta name="twitter:card" content="summary"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><title>The UX Decision Handbook</title><meta name="description" content="Tabs or sidebar? Skeleton or spinner? 62 common interface choices, each with a clear rule, a live demo, and sources you can cite."><meta name="author" content="George Plendl"><meta property="og:type" content="website"><meta property="og:title" content="The UX Decision Handbook"><meta property="og:description" content="Tabs or sidebar? Skeleton or spinner? 62 common interface choices, each with a clear rule, a live demo, and sources you can cite."><meta property="og:url" content="https://georgeplendl.github.io/The-UX-Decision-Handbook/"><meta name="twitter:card" content="summary"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,8 +46,6 @@ button,input,select,textarea{font:inherit;color:inherit;letter-spacing:inherit}
 .mast h1{font-size:clamp(42px,8vw,76px);font-weight:300;line-height:1.17;letter-spacing:-.5px}
 .mast p{margin:0;font-size:18px;line-height:1.5;letter-spacing:0;color:var(--muted);text-wrap:balance}
 .mast .sub{max-width:none;font-size:clamp(20px,2.6vw,28px);line-height:1.33;color:var(--ink)}
-.stats{display:flex;flex-wrap:wrap;gap:8px 24px;font-size:14px;color:var(--muted)}
-.stats b{color:var(--ink);font-weight:600}
 
 /* Category filter, drawn as a Carbon tab strip */
 .filters{margin-bottom:40px;border-bottom:1px solid var(--line);overflow-x:auto}
@@ -359,11 +357,10 @@ table.s-tbl{width:100%;border-collapse:collapse;font-variant-numeric:tabular-num
 
 <div class="wrap">
   <header class="mast">
-    <div class="eyebrow">A field guide by George Plendl · <a href="https://georgeplendl.me">georgeplendl.me</a> · <a href="https://github.com/georgeplendl">GitHub</a></div>
+    <div class="eyebrow">By George Plendl · <a href="https://georgeplendl.me">georgeplendl.me</a> · <a href="https://github.com/georgeplendl">GitHub</a></div>
     <h1>The UX Decision Handbook</h1>
-    <p class="sub">Make interface decisions you can defend in any design review.</p>
-    <p>Each card gives you the rule, a live demo, and the research behind it. Open any card to try it.</p>
-    <div class="stats"><span><b data-count="cards">62</b> cards</span><span><b data-count="cats">5</b> categories</span><span><b data-count="demos">62</b> live demos</span></div>
+    <p class="sub">Tabs or sidebar? Skeleton or spinner? Pick the right pattern, and know how to explain why.</p>
+    <p><span data-count="cards">62</span> common interface choices, each with a clear rule, a live demo, and sources you can cite. Open a card to try every option.</p>
   </header>
   <div class="filters" role="toolbar" aria-label="Filter cards">
     <div class="chips" id="catChips"></div>
@@ -1532,7 +1529,7 @@ sheet.addEventListener("click",e=>{const v=e.target.closest("[data-v]"),n=e.targ
 dlg.addEventListener("click",e=>{if(e.target===dlg)closeCard()});
 dlg.addEventListener("cancel",e=>{e.preventDefault();closeCard()});
 dlg.addEventListener("keydown",e=>{if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)||e.target.isContentEditable)return;if(e.key==="ArrowRight")openCard(cur+1);if(e.key==="ArrowLeft")openCard(cur-1)});
-const COUNTS={cards:CARDS.length,cats:Object.keys(CATS).length,demos:CARDS.filter(c=>D[c.id]).length};
+const COUNTS={cards:CARDS.length};
 document.querySelectorAll("[data-count]").forEach(el=>el.textContent=COUNTS[el.dataset.count]);
 renderIndex();
 const start=location.hash.slice(1);const si=CARDS.findIndex(c=>c.id===start);if(si>=0)openCard(si);
