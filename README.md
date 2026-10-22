@@ -53,7 +53,7 @@ The cards cite 271 unique sources (304 citations in all). The main publishers ar
 - Luke Wroblewski
 - MDN
 
-Every link was checked when it was added in October 2026.
+Every link was checked when it was added in October 2026. A GitHub Action re-checks them on the 1st of every month and opens an issue listing any that have broken.
 
 Some thresholds are practitioner rules of thumb rather than research findings. Examples include a tour of "about three steps" and switching from relative to absolute time "after about a week." Treat those as starting points, not laws.
 
@@ -85,12 +85,19 @@ The guide also tries to follow its own advice:
 ## Project structure
 
 ```
-├── index.html    The whole guide: markup, styles, card data, demos, previews
-├── DESIGN.md     The visual design spec the page follows
+├── index.html               The whole guide: markup, styles, card data, demos, previews
+├── DESIGN.md                The visual design spec the page follows
 ├── README.md
 ├── LICENSE
-└── .nojekyll     Tells GitHub Pages to serve the files as-is
+├── scripts/
+│   ├── check-page.mjs       Confirms the page runs and every card has a demo, sources, and a preview
+│   └── check-links.mjs      Checks every source link and writes link-report.md
+└── .github/workflows/
+    ├── pages.yml            Runs check-page, then publishes index.html on every push to main
+    └── link-check.yml       Runs check-links monthly and opens or closes a "broken-links" issue
 ```
+
+Only `index.html` is published to the site. The other files stay in the repo.
 
 To edit content, look for these in the page's `<script>`:
 
@@ -102,6 +109,13 @@ To edit content, look for these in the page's `<script>`:
 | `SRC` | The sources for each card |
 | `PV` | The index preview glyphs |
 | `ORDER` | The order of cards within each category |
+
+Before pushing, you can run the same checks the workflows run (Node 22 or newer, no installs needed):
+
+```
+node scripts/check-page.mjs
+node scripts/check-links.mjs
+```
 
 ## License
 

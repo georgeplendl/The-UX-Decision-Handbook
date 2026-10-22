@@ -1,0 +1,56 @@
+name: Check source links
+
+on:
+  schedule:
+    - cron: "0 14 1 * *" # 14:00 UTC on the 1st of every month
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      # Exit code 1 means broken links (handled below); anything higher means the script itself failed.
+      - name: Check every link in index.html
+        id: check
+        run: |
+          set +e
+          node scripts/check-links.mjs
+          code=$?
+          echo "broken=$code" >> "$GITHUB_OUTPUT"
+          [ "$code" -le 1 ] || exit "$code"
+
+      - name: Open or update the broken-links issue
+        if: steps.check.outputs.broken == '1'
+        run: |
+          gh label create broken-links --color d73a4a --description "Source links that no longer work" 2>/dev/null || true
+          issue=$(gh issue list --label broken-links --state open --json number --jq '.[0].number')
+          if [ -n "$issue" ]; then
+            gh issue comment "$issue" --body-file link-report.md
+          else
+            gh issue create --title "Broken source links" --label broken-links --body-file link-report.md
+          fi
+
+      - name: Close the issue once every link works again
+        if: steps.check.outputs.broken == '0'
+        run: |
+          issue=$(gh issue list --label broken-links --state open --json number --jq '.[0].number')
+          if [ -n "$issue" ]; then
+            gh issue close "$issue" --comment "Every source link works again as of the $(date -u +%F) check."
+          fi
+
+      # A red run also triggers GitHub's failed-workflow email.
+      - name: Mark the run as failed when links are broken
+        if: steps.check.outputs.broken == '1'
+        run: exit 1
