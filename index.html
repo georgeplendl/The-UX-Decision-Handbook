@@ -46,6 +46,7 @@ button,input,select,textarea{font:inherit;color:inherit;letter-spacing:inherit}
 .mast h1{font-size:clamp(42px,8vw,76px);font-weight:300;line-height:1.17;letter-spacing:-.5px}
 .mast p{margin:0;font-size:18px;line-height:1.5;letter-spacing:0;color:var(--muted);text-wrap:balance}
 .mast .sub{max-width:none;font-size:clamp(20px,2.6vw,28px);line-height:1.33;color:var(--ink)}
+@media (min-width:672px){.sub-q{display:block}}
 
 /* Category filter, drawn as a Carbon tab strip */
 .filters{margin-bottom:40px;border-bottom:1px solid var(--line);overflow-x:auto}
@@ -359,8 +360,8 @@ table.s-tbl{width:100%;border-collapse:collapse;font-variant-numeric:tabular-num
   <header class="mast">
     <div class="eyebrow">By George Plendl · <a href="https://georgeplendl.me">georgeplendl.me</a> · <a href="https://github.com/georgeplendl">GitHub</a></div>
     <h1>The UX Decision Handbook</h1>
-    <p class="sub">Tabs or sidebar? Skeleton or spinner? Pick the right pattern, and know how to explain why.</p>
-    <p><span data-count="cards">62</span> common interface choices, each with a clear rule, a live demo, and sources you can cite. Open a card to try every option.</p>
+    <p class="sub"><span class="sub-q">Tabs or sidebar? Skeleton or spinner?</span> Pick the right pattern, and know how to explain why.</p>
+    <p>Open a card to try every option and see the sources.</p>
   </header>
   <div class="filters" role="toolbar" aria-label="Filter cards">
     <div class="chips" id="catChips"></div>
@@ -1529,8 +1530,6 @@ sheet.addEventListener("click",e=>{const v=e.target.closest("[data-v]"),n=e.targ
 dlg.addEventListener("click",e=>{if(e.target===dlg)closeCard()});
 dlg.addEventListener("cancel",e=>{e.preventDefault();closeCard()});
 dlg.addEventListener("keydown",e=>{if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)||e.target.isContentEditable)return;if(e.key==="ArrowRight")openCard(cur+1);if(e.key==="ArrowLeft")openCard(cur-1)});
-const COUNTS={cards:CARDS.length};
-document.querySelectorAll("[data-count]").forEach(el=>el.textContent=COUNTS[el.dataset.count]);
 renderIndex();
 const start=location.hash.slice(1);const si=CARDS.findIndex(c=>c.id===start);if(si>=0)openCard(si);
 </script>
